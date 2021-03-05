@@ -14,7 +14,7 @@ class Metaheuristic_poblation_base(ABC):
         pass
 
     def random_fill(self,poblation_number,poblation_values):
-        if not a :
-            for i in range(poblation_values):
-                poblation_values.append(self.random_solution)
-        return poblation_number
+        if not poblation_values :
+            for i in range(poblation_number):
+                poblation_values.append(self.random_solution())
+        return poblation_values

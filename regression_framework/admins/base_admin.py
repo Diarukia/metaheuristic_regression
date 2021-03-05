@@ -14,6 +14,6 @@ class Base_admin(ABC):
     def execute_regression(self):
         pass
 
-    @staticmethod
-    def create_admin(self,models):
-        return Base_admin(1000,1000,models)
+    """@staticmethod
+    def create_admin(models):
+        return Base_admin(1000,1000,models)"""

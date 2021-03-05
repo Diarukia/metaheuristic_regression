@@ -1,0 +1,1 @@
+from regression_framework.admins.base_admin import Base_admin

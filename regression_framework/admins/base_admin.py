@@ -13,7 +13,3 @@ class Base_admin(ABC):
     @abstractmethod
     def execute_regression(self):
         pass
-
-    """@staticmethod
-    def create_admin(models):
-        return Base_admin(1000,1000,models)"""

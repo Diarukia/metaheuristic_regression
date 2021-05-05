@@ -1,7 +1,7 @@
 from regression_framework.functions.base_function import Base_function
-from numpy import cos
+from numpy import cos,sqrt,prod
 import numpy as np
-
+import random
 
 class Generalized_griewank_function(Base_function):
     def __init__(self,name = 'Generalized_griewank_function',lower_bound = -600,upper_bound = 600,dimension = 30):
@@ -17,4 +17,4 @@ class Generalized_griewank_function(Base_function):
 
     def random_solution(self):
         randomSolution = random.random()*(2*self.upper_bound) - self.lower_bound
-        return randomSolutionG
+        return randomSolution

@@ -10,7 +10,7 @@ class Metaheuristic_poblation_base(ABC):
         self.roulette_function = roulette_function
 
     @abstractmethod
-    def run_metaheuristic(self,number_poblation,poblation_values):
+    def run_metaheuristic(self,number_poblation,poblation_values,name,number_iterations = 100):
         pass
 
     def random_fill(self,poblation_number,poblation_values):

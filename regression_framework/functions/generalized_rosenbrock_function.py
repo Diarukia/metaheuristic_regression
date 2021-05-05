@@ -1,4 +1,5 @@
 from regression_framework.functions.base_function import Base_function
+import random
 import numpy as np
 
 class Generalized_rosenbrock_function(Base_function):

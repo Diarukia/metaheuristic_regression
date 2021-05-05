@@ -11,6 +11,7 @@ class Sphere_function(Base_function):
         return sum(x**2)
 
     def random_solution(self):
-        randomSolution = random.random()*(2*self.upper_bound) - self.lower_bound
+        aleatorio = random.random()
+        randomSolution = aleatorio*(2*self.upper_bound) + self.lower_bound
         return randomSolution
 

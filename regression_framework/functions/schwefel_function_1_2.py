@@ -1,5 +1,6 @@
 from regression_framework.functions.base_function import Base_function
 import numpy as np
+import random
 
 class Schwefel_function_1_2(Base_function):
     def __init__(self,name = 'Schwefel_function_1_2',lower_bound = -100,upper_bound = 100,dimension = 30):

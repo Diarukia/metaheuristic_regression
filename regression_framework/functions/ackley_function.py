@@ -1,6 +1,7 @@
 from regression_framework.functions.base_function import Base_function
-from numpy import pi
+from numpy import pi,cos,exp,sqrt
 import numpy as np
+import random
 
 class Ackley_function(Base_function):
     def __init__(self,name = 'Ackley_function',lower_bound = -32,upper_bound = 32,dimension = 30):

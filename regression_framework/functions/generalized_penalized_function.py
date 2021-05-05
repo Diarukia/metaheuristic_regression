@@ -1,6 +1,7 @@
 from regression_framework.functions.base_function import Base_function
 from numpy import sin,pi
 import numpy as np
+import random
 import math
 
 class Generalized_penalized_function(Base_function):
@@ -22,7 +23,7 @@ class Generalized_penalized_function(Base_function):
 
     def random_solution(self):
         randomSolution = random.random()*(2*self.upper_bound) - self.lower_bound
-        return randomSolutionG
+        return randomSolution
 
     def yi(self,x):
         return 1 + (x+1)/4

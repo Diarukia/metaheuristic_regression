@@ -1,5 +1,7 @@
 from regression_framework.functions.base_function import Base_function
+from numpy import cos,pi
 import numpy as np
+import random
 
 class Generalized_rastrigin_function(Base_function):
     def __init__(self,name = 'Generalized_rastrigin_function',lower_bound = -5.12,upper_bound = 5.12,dimension = 30):

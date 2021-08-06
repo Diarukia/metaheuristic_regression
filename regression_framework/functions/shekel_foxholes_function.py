@@ -18,7 +18,7 @@ class Shekel_foxholes_function(Base_function):
             sum+=(1/sumint)
         sum+=(1/500)
         sum=(1/sum)
-        return sum
+        return sum+1
 
     def random_solution(self):
         randomSolution = random.random()*(2*self.upper_bound) - self.lower_bound

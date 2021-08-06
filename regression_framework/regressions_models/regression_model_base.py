@@ -1,11 +1,11 @@
 from abc import ABC, abstractmethod
+from regression_framework.utils import save_fitness_data #,save_general_comparation
 import pandas as pd
 import numpy as np
 import random
-import time
 import warnings
 import logging
-
+import time
 class Regression_model_base:
     def __init__(self,optimization_problem):
         self.optimization_problem = optimization_problem
@@ -16,19 +16,35 @@ class Regression_model_base:
         self.parameter_model = {'PercFactSol': list(), 'PercInfactSol' : list(), 'ImprPerc' : list()}
         self.roulette = [0.2,0.2,0.2,0.2,0.2]
         self.total_iteration = 2000
+        self.values = list()
+        self.fitness = list()
 
-    def run_model(self,beta,current_values = None):
-        current_values = current_values
-        start_time = time.time()
-        while(self.total_iteration > 0): 
+    def run_model(self,beta,save_general_data = None,current_values = None):
+        #current_values = current_values
+        time_all = time.time()
+        contador = 0
+        while(self.total_iteration > 0):
             if(self.total_iteration/ beta >= 1 ):
-                current_values = self.metaheuristic_target.run_metaheuristic(self.metaheuristic_target.poblation_number,self.metaheuristic_target.poblation_values,self.optimization_problem.name)
+                current_values = self.metaheuristic_target.run_metaheuristic(self.metaheuristic_target.poblation_number,self.metaheuristic_target.poblation_values,self.optimization_problem.name,self.save_data)
                 self.total_iteration -= beta
             else:
-                current_values = self.metaheuristic_target.run_metaheuristic(self.metaheuristic_target.poblation_number,self.metaheuristic_target.poblation_values,self.optimization_problem.name,self.total_iteration)
+                current_values = self.metaheuristic_target.run_metaheuristic(self.metaheuristic_target.poblation_number,self.metaheuristic_target.poblation_values,self.optimization_problem.name,self.total_iteration,self.save_data)
                 self.total_iteration -= self.total_iteration
             self.regression_model()
             self.normalize(self.roulette)
+            contador += 1
+            #print('aqui vamos ',contador)
+        time_all = (time.time() - time_all )
+        #save_general_comparation(self.fitness,time_all,self.optimization_problem.name)
+        save_fitness_data(self.fitness,self.values,self.optimization_problem.name)
+        self.total_iteration = 100
+        #print('el mejor es valor es', current_values[0])
+        save_general_data(self.values,self.fitness)
+        self.fitness = list()
+        self.values = list()
+        self.parameter_model = {'PercFactSol': list(), 'PercInfactSol' : list(), 'ImprPerc' : list()}
+        #print('best fitness : ',min(self.fitness))
+        #print('peor fitness : ',max(self.fitness))
         return current_values,current_values[0]
 
     def aceptation_criteria(self, value_1, value_2, kind = 0):
@@ -68,7 +84,7 @@ class Regression_model_base:
     def save_regression_info(self):
         self.parameter_model['PercFactSol'].append(self.factsol/(self.factsol+self.infactsol))
         self.parameter_model['PercInfactSol'].append(self.infactsol/(self.factsol+self.infactsol))
-        self.parameter_model['ImprPerc'].append(  abs(self.imprperc)   )
+        self.parameter_model['ImprPerc'].append(abs(self.imprperc))
         
     def regression_model(self):
         regr = self.regression_function()
@@ -88,7 +104,10 @@ class Regression_model_base:
         df = pd.DataFrame(self.parameter_model,columns=['PercFactSol', 'PercInfactSol','ImprPerc'])
         df = df.replace([np.inf, -np.inf], np.nan).dropna(how='any')
         df = df.fillna(0)
+        #aux2 = df['ImprPerc'].astype('float64')
+        #aux1 = df[['PercFactSol', 'PercInfactSol']].astype('float64')
         regr.fit(df[['PercFactSol', 'PercInfactSol']],df['ImprPerc'])
+        #regr.fit(aux1,aux2)
         for i in range(5):
             max_row = df.iloc[df['ImprPerc'].idxmax()].to_frame().T
             df = df.drop(df.index[[df['ImprPerc'].idxmax()]])
@@ -108,3 +127,8 @@ class Regression_model_base:
                     roulette[i] = abs(roulette[i])/roulette_sum
                 except Warning as e:
                     roulette[i] = 0
+
+    def save_data(self,poblation):
+        for i in poblation:
+            self.values.append(i)
+            self.fitness.append( self.optimization_problem.calcule_fitness(i))

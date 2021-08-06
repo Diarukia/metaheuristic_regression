@@ -7,7 +7,7 @@ import time
 class Elastic_net_cv_model(Regression_model_base):
     def __init__(self,optimization_problem):
         super().__init__(optimization_problem)
-        self.metaheuristic_target = Sho(self.optimization_problem.calcule_fitness,self.aceptation_criteria,0.1514,25,self.optimization_problem.random_solution,self.roulette_function)
+        self.metaheuristic_target = Sho(self.optimization_problem.calcule_fitness,self.aceptation_criteria,0.1158,25,self.optimization_problem.random_solution,self.roulette_function)
 
     def regression_function(self):
-        return ElasticNetCV()
+        return ElasticNetCV(max_iter = 32000)

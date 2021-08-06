@@ -14,11 +14,15 @@ from regression_framework.functions.goldstein_price_function import Goldstein_pr
 from regression_framework.functions.hartman_family_function_1 import Hartman_family_function_1
 from regression_framework.functions.hartman_family_function_2 import Hartman_family_function_2
 from regression_framework.functions.shifted_elliptic_function import Shifted_elliptic_function
-
+from regression_framework.functions.shifted_rastrigin_function import Shifted_rastrigin_function
+from regression_framework.functions.shifted_ackley_function import Shifted_ackley_function
+from regression_framework.functions.one_separable_shifted_rotated_elliptic_function import One_separable_shifted_rotated_elliptic_function
+from regression_framework.functions.one_separable_shifted_and_rotated_rastrigin_function import One_separable_shifted_and_rotated_rastrigin_function
 
 
 def list_functions():
     return [Sphere_function(),Schwefel_function_2_22(),Schwefel_function_1_2(),Generalized_rosenbrock_function(),Generalized_schwefel_function_2_26()
            ,Generalized_rastrigin_function(),Ackley_function(),Generalized_griewank_function(),Generalized_penalized_function(),Shekel_foxholes_function()
            ,Six_hump_camel_back_function(),Branin_function(),Goldstein_price_function(),Hartman_family_function_1(),Hartman_family_function_2()
-           ,Shifted_elliptic_function()]
+           ,Shifted_elliptic_function(),Shifted_rastrigin_function(),Shifted_ackley_function()
+           ,One_separable_shifted_rotated_elliptic_function(),One_separable_shifted_and_rotated_rastrigin_function()]

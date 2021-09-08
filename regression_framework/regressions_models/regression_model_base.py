@@ -1,5 +1,5 @@
 from abc import ABC, abstractmethod
-from regression_framework.utils import save_fitness_data #,save_general_comparation
+from regression_framework.utils import save_fitness_data ,save_general_comparation
 import pandas as pd
 import numpy as np
 import random
@@ -15,7 +15,7 @@ class Regression_model_base:
         self.imprperc = 0
         self.parameter_model = {'PercFactSol': list(), 'PercInfactSol' : list(), 'ImprPerc' : list()}
         self.roulette = [0.2,0.2,0.2,0.2,0.2]
-        self.total_iteration = 2000
+        self.total_iteration = 1000
         self.values = list()
         self.fitness = list()
 
@@ -33,9 +33,8 @@ class Regression_model_base:
             self.regression_model()
             self.normalize(self.roulette)
             contador += 1
-            #print('aqui vamos ',contador)
         time_all = (time.time() - time_all )
-        #save_general_comparation(self.fitness,time_all,self.optimization_problem.name)
+        #save_general_comparation(self.fitness,time_all,self.optimization_problem.name) # descomentar para solo correr la regresion sola
         save_fitness_data(self.fitness,self.values,self.optimization_problem.name)
         self.total_iteration = 100
         #print('el mejor es valor es', current_values[0])
@@ -43,8 +42,8 @@ class Regression_model_base:
         self.fitness = list()
         self.values = list()
         self.parameter_model = {'PercFactSol': list(), 'PercInfactSol' : list(), 'ImprPerc' : list()}
-        #print('best fitness : ',min(self.fitness))
-        #print('peor fitness : ',max(self.fitness))
+        #print('best fitness : ',np.min(self.fitness))
+        #print('peor fitness : ',np.max(self.fitness))
         return current_values,current_values[0]
 
     def aceptation_criteria(self, value_1, value_2, kind = 0):

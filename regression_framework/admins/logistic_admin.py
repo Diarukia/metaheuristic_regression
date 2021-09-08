@@ -20,10 +20,8 @@ class Logistic_admin(Base_admin):
         current_values = None
         regression = 0
         self.time_all = time.time()
-        for i in range(9):
+        for i in range(10):
             if(i < 5):
-                #print('esto es i ', i)
-                #print('estos son los modelos ', len(self.models))
                 current_values,fitness = self.models[i].run_model(self.beta,self.save_general_data,current_values)
                 self.results['model'].append(i)
                 self.results['fitness'].append(fitness)

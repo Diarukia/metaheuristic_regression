@@ -105,7 +105,7 @@ class Sho(Metaheuristic_poblation_base):
             
                 self.current_iterations += 1
                 optimal_solutions = list()
-                print(self.current_iterations)
+                #print(self.current_iterations)
                 save_data(poblation_values)
                 
         self.current_iterations = 0

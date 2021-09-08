@@ -8,7 +8,8 @@ class Sphere_function(Base_function):
 
     def get_fitness(self,value):
         x = np.asarray_chkfinite(value)
-        return sum(x**2)
+        #return sum(x**2)
+        return np.sum(np.multiply(x,x))
 
     def random_solution(self):
         aleatorio = random.random()

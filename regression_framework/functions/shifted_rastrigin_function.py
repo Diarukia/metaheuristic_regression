@@ -13,6 +13,7 @@ class Shifted_rastrigin_function(Base_function):
     def get_fitness(self,value):
         value = np.asarray_chkfinite(value)
         self.counter += 1
+        self.reset()
         return self.calculus(value)
 
     def random_solution(self):
@@ -20,7 +21,8 @@ class Shifted_rastrigin_function(Base_function):
         return aleatorio[0]
 
     def calcule_fitness(self,value):
-        return self.get_fitness([value for x in range(self.dimension)])
+        #return self.get_fitness([value for x in range(self.dimension)])
+        return self.get_fitness(np.full((1000), value, dtype=np.float64)  )
     
     def reset(self):
         if(self.counter > 1000000):

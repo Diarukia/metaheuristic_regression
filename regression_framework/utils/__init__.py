@@ -21,7 +21,7 @@ def save_fitness_data(fitness,value,function_name):
     counter = 1
     #df.to_excel('iteration_'+str(iteration)+'_'+function_name+"_fitness.xlsx")
     while(True):
-        if(os.path.isfile("../Regresiones/"+'iteration_'+str(counter)+'_'+function_name+"_fitness.xlsx")  == False):
+        if(os.path.isfile("../2/"+'iteration_'+str(counter)+'_'+function_name+"_fitness.xlsx")  == False):
             df = pd.DataFrame({'fitness' : fitness, 'value' : value,'iteration' : counter})
             df.to_excel('iteration_'+str(counter)+'_'+function_name+"_fitness.xlsx")
             break

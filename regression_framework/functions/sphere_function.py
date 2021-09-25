@@ -6,9 +6,8 @@ class Sphere_function(Base_function):
     def __init__(self,name = 'Sphere_function',lower_bound = -100,upper_bound = 100,dimension = 30):
         super().__init__(name,lower_bound,upper_bound,dimension)
 
-    def get_fitness(self,value):
-        x = np.asarray_chkfinite(value)
-        #return sum(x**2)
+    def get_fitness(self,x):
+        #x = np.asarray_chkfinite(value)
         return np.sum(np.multiply(x,x))
 
     def random_solution(self):

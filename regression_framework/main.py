@@ -15,8 +15,16 @@ from regression_framework.regressions_models.ridge_model import Ridge_model
 from regression_framework.regressions_models.lasso_model import Lasso_model
 from regression_framework.admins.logistic_admin import Logistic_admin
 
+from regression_framework.functions.extended_powell_singular_function import Extended_powell_singular_function
+from regression_framework.functions.extended_rosenbrock_function import Extended_rosenbrock_function
+from regression_framework.functions.linear_full_rank import Linear_full_rank
+from regression_framework.functions.penalty_i_function import Penalty_I_function
+from regression_framework.functions.variably_dimensioned_function import Variably_dimensioned_function
+
+
 def create_admin():
-    holi = Sphere_function()
+    
+    holi = Variably_dimensioned_function()
     print(holi.name)
     #Lasso_model(holi).run_model(100)
 
